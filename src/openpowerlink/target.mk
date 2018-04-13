@@ -1,22 +1,24 @@
-OPL_DIR := $(call select_from_ports,openpowerlink)
+TARGET := openpowerlink
 
-INC_DIR += $(OPL_DIR)/openpowerlink $(OPL_DIR)/openpowerlink/include $(OPL_DIR)/openpowerlink/contrib/ $(OPL_DIR)/openpowerlink/common/ $(OPL_DIR)/openpowerlink/app/ $(OPL_DIR)/openpowerlink/arch/ $(OPL_DIR)/openpowerlink/app/common $(OPL_DIR)/openpowerlink/app/common/obdcreate
+OPL_DIR := $(PRG_DIR)
+
+INC_DIR += $(OPL_DIR) $(OPL_DIR)/include $(OPL_DIR)/contrib/ $(OPL_DIR)/common/ $(OPL_DIR)/app $(OPL_DIR)/arch/ $(OPL_DIR)/app/common $(OPL_DIR)/app/common/obdcreate
 
 #Uncomment for CN
-INC_DIR += $(OPL_DIR)/openpowerlink/proj/cn
-INC_DIR += $(OPL_DIR)/openpowerlink/app/common/objdicts/CiA401_CN
-INC_DIR += $(OPL_DIR)/openpowerlink/app/demo_cn
+INC_DIR += $(OPL_DIR)/proj/cn
+INC_DIR += $(OPL_DIR)/app/common/objdicts/CiA401_CN
+INC_DIR += $(OPL_DIR)/app/demo_cn
 
 #Uncomment for MN
-#INC_DIR += $(OPL_DIR)/openpowerlink/proj/mn
-#INC_DIR += $(OPL_DIR)/openpowerlink/app/common/objdicts/CiA302-4_MN
-#INC_DIR += $(OPL_DIR)/openpowerlink/app/demo_mn
+#INC_DIR += $(OPL_DIR)/proj/mn
+#INC_DIR += $(OPL_DIR)/app/common/objdicts/CiA302-4_MN
+#INC_DIR += $(OPL_DIR)/app/demo_mn
 
 LIBS += libc libc_lwip base pthread stdcxx
 
-CC_DEF += -DWITH_EC -DWITH_SOCKS -DWITH_THREADING
+#SHARED_LIB = yes
 
-SHARED_LIB = yes
+CC_DEF += -DWITH_EC -DWITH_SOCKS -DWITH_THREADING
 
 CC_OPT += -O2
 
@@ -101,7 +103,8 @@ SRC_COMMON = /user/api/generic.c \
 /app/common/eventlog/eventlogstring.c \
 /app/common/eventlog/eventlog.c \
 /app/common/system/system-linux.c \
-/app/common/obdcreate/obdcreate.c
+/app/common/obdcreate/obdcreate.c \
+/app/genode_functions.cpp
 
 SRC_MN = /user/cfmu.c \
 /user/obd/obdcdc.c \
@@ -121,6 +124,6 @@ SRC_CN_APP = /app/demo_cn/main.c \
 /app/demo_cn/app.c \
 /app/demo_cn/event.c
 
-#SRC_CC = $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_COMMON)) $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_MN)) $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_MN_APP))
-SRC_CC = $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_COMMON)) $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_MN)) $(addprefix $(OPL_DIR)/openpowerlink, $(SRC_CN_APP))
+#SRC_CC = $(addprefix $(OPL_DIR), $(SRC_COMMON)) $(addprefix $(OPL_DIR), $(SRC_MN)) $(addprefix $(OPL_DIR), $(SRC_MN_APP))
+SRC_CC = $(addprefix $(OPL_DIR), $(SRC_COMMON)) $(addprefix $(OPL_DIR), $(SRC_MN)) $(addprefix $(OPL_DIR), $(SRC_CN_APP))
 

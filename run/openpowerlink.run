@@ -66,7 +66,7 @@ set config {
 	</start>
 	<start name="openpowerlink">
                 <resource name="RAM" quantum="256M"/>
-                <provides><service name="openpowerlink"/></provides>
+                <provides><service name="Openpowerlink"/></provides>
                 <config>
 	             <libc rtc="/dev/rtc" cwd="/dev/rtc" stdin="/dev/rtc" stdout="/dev/rtc" stderr="/dev/rtc">
 	                 <vfs>
@@ -128,7 +128,6 @@ set boot_modules {
 	libm.lib.so
 	lwip.lib.so
 	pthread.lib.so
-	openpowerlink.lib.so
 }
 
 #	rtc_drv
