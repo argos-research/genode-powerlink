@@ -310,7 +310,6 @@ static tOplkError initProcessImage(void)
 
     /* Allocate process image */
     printConsole("Initializing process image...\n");
-    printConsole("Size of process image: Input = XX Output = YY \n");
 
     ret = oplk_allocProcessImage(sizeof(PI_IN), sizeof(PI_OUT));
     if (ret != kErrorOk)
@@ -320,7 +319,7 @@ static tOplkError initProcessImage(void)
     pProcessImageOut_l = (const PI_OUT*)oplk_getProcessImageOut();
 
     /* link process variables used by CN to object dictionary */
-    printConsole("Linking process image vars:\n");
+    printConsole("Linking process image vars\n");
 
     obdSize = sizeof(pProcessImageIn_l->digitalIn);
     varEntries = 1;

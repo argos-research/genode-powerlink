@@ -98,31 +98,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if (DEBUG_GLB_LVL & DEBUG_LVL_ALWAYS)
 #define DEBUG_LVL_ALWAYS_TRACE(...)     TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_ALWAYS_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_ALWAYS_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_ERROR)
 #define DEBUG_LVL_ERROR_TRACE(...)      TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_ERROR_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_ERROR_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_ASSERT)
 #define DEBUG_LVL_ASSERT_TRACE(...)     TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_ASSERT_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_ASSERT_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_EVENTU)
 #define DEBUG_LVL_EVENTU_TRACE(...)     TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_EVENTU_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_EVENTU_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_EVENTK)
 #define DEBUG_LVL_EVENTK_TRACE(...)     TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_EVENTK_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_EVENTK_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_VETH)
@@ -134,13 +134,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if (DEBUG_GLB_LVL & DEBUG_LVL_SDO)
 #define DEBUG_LVL_SDO_TRACE(...)        TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_SDO_TRACE(...)        TRACE(__VA_ARGS__)
+#define DEBUG_LVL_SDO_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_PDO)
 #define DEBUG_LVL_PDO_TRACE(...)        TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_PDO_TRACE(...)        TRACE(__VA_ARGS__)
+#define DEBUG_LVL_PDO_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_TIMERH)
@@ -152,13 +152,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if (DEBUG_GLB_LVL & DEBUG_LVL_CTRL)
 #define DEBUG_LVL_CTRL_TRACE(...)       TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_CTRL_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_CTRL_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_DRVINTF)
 #define DEBUG_LVL_DRVINTF_TRACE(...)    TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_DRVINTF_TRACE(...)     TRACE(__VA_ARGS__)
+#define DEBUG_LVL_DRVINTF_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_TIMERU)
@@ -170,49 +170,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if (DEBUG_GLB_LVL & DEBUG_LVL_CFM)
 #define DEBUG_LVL_CFM_TRACE(...)        TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_CFM_TRACE(...)     TRACE(__VA_ARGS__)
+#define DEBUG_LVL_CFM_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_NMTMN)
 #define DEBUG_LVL_NMTMN_TRACE(...)      TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_NMTMN_TRACE(...)     TRACE(__VA_ARGS__)
+#define DEBUG_LVL_NMTMN_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_NMTU)
 #define DEBUG_LVL_NMTU_TRACE(...)       TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_NMTU_TRACE(...)     TRACE(__VA_ARGS__)
+#define DEBUG_LVL_NMTU_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_NMTCN)
 #define DEBUG_LVL_NMTCN_TRACE(...)      TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_NMTCN_TRACE(...)     TRACE(__VA_ARGS__)
+#define DEBUG_LVL_NMTCN_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_NMTK)
 #define DEBUG_LVL_NMTK_TRACE(...)       TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_NMTK_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_NMTK_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_OBD)
 #define DEBUG_LVL_OBD_TRACE(...)        TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_OBD_TRACE(...)        TRACE(__VA_ARGS__)
+#define DEBUG_LVL_OBD_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_DLL)
 #define DEBUG_LVL_DLL_TRACE(...)        TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_DLL_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_DLL_TRACE(...)
 #endif
 
 #if (DEBUG_GLB_LVL & DEBUG_LVL_EDRV)
 #define DEBUG_LVL_EDRV_TRACE(...)       TRACE(__VA_ARGS__)
 #else
-#define DEBUG_LVL_EDRV_TRACE(...)       TRACE(__VA_ARGS__)
+#define DEBUG_LVL_EDRV_TRACE(...)
 #endif
 
 //------------------------------------------------------------------------------

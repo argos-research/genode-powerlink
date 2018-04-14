@@ -261,7 +261,7 @@ static tOplkError processStateChangeEvent(const tEventNmtStateChange* pNmtStateC
         case kNmtMsBasicEthernet:           // no break
 
         default:
-            printConsole("Stack entered state: %s\n");
+            printConsole("Stack entered state:\n");
             printConsole(debugstr_getNmtStateStr(pNmtStateChange_p->newNmtState));
             break;
     }
@@ -289,8 +289,6 @@ static tOplkError processErrorWarningEvent(const tEventError* pInternalError_p,
 
     UNUSED_PARAMETER(pUserArg_p);
 
-    printConsole(pInternalError_p);
-
     return kErrorOk;
 }
 
@@ -310,8 +308,6 @@ static tOplkError processHistoryEvent(const tErrHistoryEntry* pHistoryEntry_p,
                                       void* pUserArg_p)
 {
     UNUSED_PARAMETER(pUserArg_p);
-
-    printConsole(pHistoryEntry_p);
 
     return kErrorOk;
 }
@@ -333,8 +329,6 @@ static tOplkError processNodeEvent(const tOplkApiEventNode* pNode_p,
 {
     UNUSED_PARAMETER(pUserArg_p);
 
-    printConsole(pNode_p);
-
     // check additional argument
     switch (pNode_p->nodeEvent)
     {
@@ -345,7 +339,7 @@ static tOplkError processNodeEvent(const tOplkApiEventNode* pNode_p,
             break;
 
         case kNmtNodeEventNmtState:
-            printConsole("Node %d entered state %s\n");
+            printConsole("Node (id) changed its state\n");
             break;
 
         case kNmtNodeEventError:

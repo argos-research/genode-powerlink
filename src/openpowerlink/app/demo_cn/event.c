@@ -281,13 +281,6 @@ static tOplkError processPdoChangeEvent(const tOplkApiEventPdoChange* pPdoChange
                                    &varLen);
         if (ret != kErrorOk)
         {
-            /*eventlog_printMessage(kEventlogLevelError,
-                                  kEventlogCategoryObjectDictionary,
-                                  "Reading 0x%X/%d failed with %s(0x%X)",
-                                  pPdoChange_p->mappParamIndex,
-                                  subIndex,
-                                  debugstr_getRetValStr(ret),
-                                  ret);*/
             printConsole("Reading failed in event.c file -> processPdoChangeEvent");
             continue;
         }

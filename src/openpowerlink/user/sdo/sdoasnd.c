@@ -44,8 +44,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <user/dllucal.h>
 #include <common/ami.h>
 
-#include <genode_functions.h>
-
 #if defined(CONFIG_INCLUDE_SDO_ASND)
 
 //============================================================================//
@@ -311,8 +309,6 @@ receiving ASnd frames.
 //------------------------------------------------------------------------------
 static tOplkError sdoAsndCb(const tFrameInfo* pFrameInfo_p)
 {
-
-printConsole("================== Got SDO DATA");
     tOplkError      ret = kErrorOk;
     UINT            count;
     UINT*           pConnection;

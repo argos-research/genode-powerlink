@@ -39,6 +39,9 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ------------------------------------------------------------------------------*/
 
+// Define debugging constants
+#define DEBUG_LVL_CTRL
+
 //------------------------------------------------------------------------------
 // includes
 //------------------------------------------------------------------------------
@@ -272,7 +275,7 @@ static tOplkError initPowerlink(UINT32 cycleLen_p,
     if (ret != kErrorOk)
     {
         printConsole(
-                "obdcreate_initObd() failed with \"%s\" (0x%04x)\n");
+                "obdcreate_initObd() failed\n");
         return ret;
     }
 
@@ -281,7 +284,7 @@ static tOplkError initPowerlink(UINT32 cycleLen_p,
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_initialize() failed with \"%s\" (0x%04x)\n");
+                "oplk_initialize() failed\n");
         return ret;
     }
 
@@ -289,7 +292,7 @@ static tOplkError initPowerlink(UINT32 cycleLen_p,
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_create() failed with \"%s\" (0x%04x)\n");
+                "oplk_create() failed\n");
         return ret;
     }
 
@@ -329,11 +332,7 @@ static void loopMain(void)
     printConsole("Start POWERLINK stack... ok\n");
     printConsole("Digital I/O interface with openPOWERLINK is ready!\n");
     printConsole("\n-------------------------------\n");
-    printConsole("Press Esc to leave the program\n");
-    printConsole("Press r to reset the node\n");
-    printConsole("Press i to increase the digital input\n");
-    printConsole("Press d to decrease the digital input\n");
-    printConsole("Press p to print the digital outputs\n");
+    printConsole("Demo application is now running \n");
     printConsole("-------------------------------\n\n");
 
     setupInputs();
@@ -362,11 +361,6 @@ static void loopMain(void)
         processSync();
 #endif
     }
-
-#if (TARGET_SYSTEM == _WIN32_)
-    printConsole("Press Enter to quit!\n");
-    console_getch();
-#endif
 }
 
 //------------------------------------------------------------------------------

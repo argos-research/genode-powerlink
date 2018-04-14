@@ -302,14 +302,14 @@ static tOplkError initPowerlink(UINT32 cycleLen_p,
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_initialize() failed with \"%s\" (0x%04x)\n");
+                "oplk_initialize() failed\n");
         return ret;
     }
 
     ret = oplk_create(&initParam);
     if (ret != kErrorOk)
     {
-        printConsole("oplk_create() failed with \"%s\" (0x%04x)\n");
+        printConsole("oplk_create() failed\n");
         return ret;
     }
 
@@ -317,7 +317,7 @@ static tOplkError initPowerlink(UINT32 cycleLen_p,
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_setCdcFilename() failed with \"%s\" (0x%04x)\n");
+                "oplk_setCdcFilename() failed\n");
         return ret;
     }
 
@@ -356,13 +356,12 @@ static void loopMain(void)
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_execNmtCommand() failed with \"%s\" (0x%04x)\n");
+                "oplk_execNmtCommand() failed\n");
         return;
     }
 
     printConsole("\n-------------------------------\n");
-    printConsole("Press Esc to leave the program\n");
-    printConsole("Press r to reset the node\n");
+    printConsole("Demo Application is now running\n");
     printConsole("-------------------------------\n\n");
 
     while (!fExit)
@@ -382,11 +381,6 @@ static void loopMain(void)
 #endif
 
     }
-
-#if (TARGET_SYSTEM == _WIN32_)
-    printConsole("Press Enter to quit!\n");
-    console_getch();
-#endif
 
 }
 
@@ -418,7 +412,7 @@ static void shutdownPowerlink(void)
     if (ret != kErrorOk)
     {
         printConsole(
-                "oplk_execNmtCommand() failed with \"%s\" (0x%04x)\n");
+                "oplk_execNmtCommand() failed\n");
     }
 
     // small loop to implement timeout waiting for thread to terminate

@@ -303,11 +303,6 @@ tOplkError ctrlu_checkKernelStackInfo(void)
     if ((ctrlInstance_l.usableKernelFeatures == ctrlInstance_l.requiredKernelFeatures) &&
         (ctrlInstance_l.kernelInfo.version == PLK_DEFINED_STACK_VERSION))
     {
-
-char snum[35];
-
-sprintf(snum, "%d", ctrlInstance_l.usableKernelFeatures);
-printConsole(snum);
         DEBUG_LVL_ALWAYS_TRACE("Kernel features: 0x%08x\n", ctrlInstance_l.kernelInfo.featureFlags);
         DEBUG_LVL_ALWAYS_TRACE("Usable features: 0x%08x\n", ctrlInstance_l.usableKernelFeatures);
         DEBUG_LVL_ALWAYS_TRACE("Kernel version: 0x%08x\n", ctrlInstance_l.kernelInfo.version);
@@ -357,15 +352,13 @@ tOplkError ctrlu_initStack(const tOplkApiInitParam* pInitParam_p)
 
     // Check parameter validity
     ASSERT(pInitParam_p != NULL);
-    printConsole("Assert pInitParam_p => Success");
+    printConsole("Assert pInitParam_p... Success");
 
     // reset instance structure
     OPLK_MEMSET(&ctrlInstance_l.initParam, 0, sizeof(tOplkApiInitParam));
     OPLK_MEMCPY(&ctrlInstance_l.initParam,
                 pInitParam_p,
                 min1(sizeof(tOplkApiInitParam), (size_t)pInitParam_p->sizeOfInitParam));
-
-    printConsole("Memset OK");
 
     // check event callback function pointer
     if (ctrlInstance_l.initParam.pfnCbEvent == NULL)
@@ -375,15 +368,12 @@ tOplkError ctrlu_initStack(const tOplkApiInitParam* pInitParam_p)
         goto Exit;
     }
 
-    printConsole("EventCallback OK");
-    printConsole("Checking initObd");
-
     ret = initObd(&ctrlInstance_l.initParam);
     if (ret != kErrorOk) {
         goto Exit;
     }
 
-    printConsole("Success - initObd");
+    printConsole("initObd ... Success");
 
 
 #if (CONFIG_OBD_USE_STORE_RESTORE != FALSE)
@@ -407,7 +397,8 @@ tOplkError ctrlu_initStack(const tOplkApiInitParam* pInitParam_p)
     ret = obdal_init(cbEventUserObdAccess);
     if (ret != kErrorOk)
         goto Exit;
-printConsole("Initializing kernel modules ...\n");
+
+    printConsole("Initializing kernel modules ...\n");
 
     DEBUG_LVL_CTRL_TRACE("Initializing kernel modules ...\n");
     OPLK_MEMCPY(ctrlParam.aMacAddress, ctrlInstance_l.initParam.aMacAddress, 6);
@@ -499,7 +490,7 @@ printConsole("Initializing kernel modules ...\n");
 
     // linkDomainObjects requires an initialized stack
 #if defined(CONFIG_INCLUDE_NMT_MN)
-    printConsole("Initialize linkDomainObjects");
+    printConsole("Initialize linkDomainObjects ...");
     ret = linkDomainObjects(aLinkObjectRequestsMn_l, tabentries(aLinkObjectRequestsMn_l));
 #endif
 
@@ -783,7 +774,6 @@ tOplkError ctrlu_callUserEventCallback(tOplkApiEventType eventType_p,
 {
     tOplkError  ret = kErrorOk;
 
-    printConsole("== Got Event at ctrlu_callUserEventCallback ==");
     // If the stack is not initialized but we get events, we don't forward
     // them to the application!
     if (ctrlInstance_l.fInitialized)
@@ -2058,7 +2048,6 @@ static tOplkError cbNodeEvent(UINT nodeId_p,
                               UINT16 errorCode_p,
                               BOOL fMandatory_p)
 {
-    printConsole("cbNodeEvent");
     tOplkError          ret = kErrorOk;
     tOplkApiEventArg    eventArg;
 
@@ -2406,44 +2395,44 @@ UINT32 getRequiredKernelFeatures(void)
 #if defined(CONFIG_INCLUDE_NMT_MN)
     // We do have NMT functionality compiled in and therefore need an MN
     // kernel stack
-printConsole("*** CONFIG_INCLUDE_NMT_MN");
+    printConsole("*** CONFIG_INCLUDE_NMT_MN");
     requiredKernelFeatures |= OPLK_KERNEL_MN;
 #endif
 
 #if defined(CONFIG_INCLUDE_PDO)
     // We contain the PDO module for isochronous transfers and therefore need
     // a kernel module which can handle isochronous transfers.
-printConsole("*** CONFIG_INCLUDE_PDO");
+    printConsole("*** CONFIG_INCLUDE_PDO");
     requiredKernelFeatures |= OPLK_KERNEL_ISOCHR;
 #endif
 
 #if defined(CONFIG_INCLUDE_PRES_FORWARD)
     // We contain the PRES forwarding module (used for diagnosis) and therefore
     // need a kernel with this feature.
-printConsole("*** CONFIG_INCLUDE_PRES_FORWARD");
+    printConsole("*** CONFIG_INCLUDE_PRES_FORWARD");
     requiredKernelFeatures |= OPLK_KERNEL_PRES_FORWARD;
 #endif
 
 #if defined(CONFIG_INCLUDE_VETH)
     // We contain the virtual Ethernet module and therefore need a kernel
     // which supports virtual Ethernet.
-printConsole("*** CONFIG_INCLUDE_VETH");
+    printConsole("*** CONFIG_INCLUDE_VETH");
     requiredKernelFeatures |= OPLK_KERNEL_VETH;
 #endif
 
 #if defined(CONFIG_INCLUDE_NMT_RMN)
     // We contain the code for the redundancy MN (RMN)
-printConsole("*** CONFIG_INCLUDE_NMT_RMN");
+    printConsole("*** CONFIG_INCLUDE_NMT_RMN");
     requiredKernelFeatures |= OPLK_KERNEL_RMN;
 #endif
 
 #if (CONFIG_DLL_PRES_CHAINING_CN == TRUE)
-printConsole("*** CONFIG_DLL_PRES_CHAINING_CN");
+    printConsole("*** CONFIG_DLL_PRES_CHAINING_CN");
     requiredKernelFeatures |= OPLK_KERNEL_PRES_CHAINING_CN;
 #endif
 
 #if defined(CONFIG_INCLUDE_SOC_TIME_FORWARD)
-printConsole("*** CONFIG_INCLUDE_SOC_TIME_FORWARD");
+    printConsole("*** CONFIG_INCLUDE_SOC_TIME_FORWARD");
     requiredKernelFeatures |= OPLK_KERNEL_SOC_TIME_FORWARD;
 #endif
 
@@ -2512,7 +2501,6 @@ static tOplkError storeOdPart(tObdCbParam* pParam_p)
             // Device does not support saving parameters or not by command
             if ((devCap & OBD_STORE_AUTONOMOUSLY) != 0)
             {
-printConsole("Errrrrrrrrrrrrrrrrrrrrrrrrrrrrorr!");
                 // Device saves parameters autonomously.
                 pParam_p->abortCode = SDO_AC_DATA_NOT_TRANSF_DUE_LOCAL_CONTROL;
             }

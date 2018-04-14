@@ -16,8 +16,6 @@ INC_DIR += $(OPL_DIR)/app/demo_cn
 
 LIBS += libc libc_lwip base pthread stdcxx
 
-#SHARED_LIB = yes
-
 CC_DEF += -DWITH_EC -DWITH_SOCKS -DWITH_THREADING
 
 CC_OPT += -O2
@@ -124,6 +122,8 @@ SRC_CN_APP = /app/demo_cn/main.c \
 /app/demo_cn/app.c \
 /app/demo_cn/event.c
 
+# Uncomment for MN
 #SRC_CC = $(addprefix $(OPL_DIR), $(SRC_COMMON)) $(addprefix $(OPL_DIR), $(SRC_MN)) $(addprefix $(OPL_DIR), $(SRC_MN_APP))
-SRC_CC = $(addprefix $(OPL_DIR), $(SRC_COMMON)) $(addprefix $(OPL_DIR), $(SRC_MN)) $(addprefix $(OPL_DIR), $(SRC_CN_APP))
+# Uncomment for CN
+SRC_CC = $(addprefix $(OPL_DIR), $(SRC_COMMON)) $(addprefix $(OPL_DIR), $(SRC_CN)) $(addprefix $(OPL_DIR), $(SRC_CN_APP))
 

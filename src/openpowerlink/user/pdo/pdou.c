@@ -54,7 +54,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <limits.h>
 
-#include <genode_functions.h>
 //============================================================================//
 //            G L O B A L   D E F I N I T I O N S                             //
 //============================================================================//
@@ -234,7 +233,6 @@ The function initializes the PDO user module.
 //------------------------------------------------------------------------------
 tOplkError pdou_init(void)
 {
-printConsole("+++++++++++++++++++++++start Init");
     tOplkError  ret;
 
     OPLK_MEMSET(&pdouInstance_g, 0, sizeof(pdouInstance_g));
@@ -243,7 +241,6 @@ printConsole("+++++++++++++++++++++++start Init");
     pdouInstance_g.pfnCbEventPdoChange = NULL;
     if (target_createMutex("/pdoMutex", &pdouInstance_g.lockMutex) != kErrorOk)
         return kErrorNoFreeInstance;
-printConsole("#####################Success Init");
     ret = pdoucal_init();
     pdouInstance_g.fInitialized = TRUE;
 
@@ -939,10 +936,6 @@ static tOplkError allocatePdoChannels(const tPdoAllocationParam* pAllocationPara
     }
 
 Exit:
-if(ret==kErrorOk)
-printConsole(":::::::::OK");
-else
-printConsole("::::::::NOT OK");
     DEBUG_LVL_PDO_TRACE("%s() = %s\n", __func__, debugstr_getRetValStr(ret));
     return ret;
 }
@@ -1186,7 +1179,6 @@ static tOplkError checkAndConfigurePdo(UINT16 mappParamIndex_p,
                                   pdoChannelConf.fTx);
 
             if (ret != kErrorOk) {
-		printConsole("Abort here!");
                  *pAbortCode_p = SDO_AC_DATA_NOT_TRANSF_DUE_LOCAL_CONTROL;
             }
 	}
@@ -1257,9 +1249,7 @@ static tOplkError checkAndConfigurePdo(UINT16 mappParamIndex_p,
                               mappParamIndex_p,
                               mappObjectCount_p,
                               pdoChannelConf.fTx);
-printConsole("!!!!!!!!!!!!!!");
         if (ret != kErrorOk) {
-printConsole("§§§§§§§§§§§§§§");
             *pAbortCode_p = SDO_AC_DATA_NOT_TRANSF_DUE_LOCAL_CONTROL;
 	}
     }
